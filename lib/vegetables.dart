@@ -14,6 +14,14 @@ class _VegetablesPageState extends State<VegetablesPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Responsive spacing based on screen size
+    final Size screenSize = MediaQuery.of(context).size;
+    final double horizontalPadding = screenSize.width * 0.04; // ~16px on 400px width
+    final double smallGap = screenSize.width * 0.02; // ~8px on 400px width
+    final double mediumGap = screenSize.width * 0.03; // ~12px on 400px width
+    final double inputVerticalPadding = screenSize.height * 0.017; // ~14px on ~820px height
+    final double cardPadding = screenSize.width * 0.03; 
+     final double chipsize = screenSize.height * 0.07; // ~12px on 400px width
     return Scaffold(
       backgroundColor: const Color(0xFFF6F6F7),
       body: SafeArea(
@@ -22,14 +30,14 @@ class _VegetablesPageState extends State<VegetablesPage> {
           children: [
             // Header
             Padding(
-              padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+              padding: EdgeInsets.fromLTRB(horizontalPadding, smallGap, horizontalPadding, 0),
               child: Row(
                 children: [
                   GestureDetector(
                     onTap: () => Navigator.of(context).pop(),
                     child: const Icon(Icons.arrow_back, color: Color(0xFF331B6D)),
                   ),
-                  const SizedBox(width: 8),
+                  SizedBox(width: smallGap),
                   const Text(
                     'Vegetables',
                     style: TextStyle(
@@ -41,10 +49,10 @@ class _VegetablesPageState extends State<VegetablesPage> {
                 ],
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: mediumGap),
             // Search
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
               child: TextField(
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.search, color: Color(0xFF331B6D)),
@@ -52,7 +60,7 @@ class _VegetablesPageState extends State<VegetablesPage> {
                   hintStyle: const TextStyle(color: Color(0xFF9CA3AF)),
                   filled: true,
                   fillColor: Colors.white,
-                  contentPadding: const EdgeInsets.symmetric(vertical: 14),
+                  contentPadding: EdgeInsets.symmetric(vertical: inputVerticalPadding),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(28),
                     borderSide: const BorderSide(color: Color(0xFFE5E7EB)),
@@ -64,13 +72,13 @@ class _VegetablesPageState extends State<VegetablesPage> {
                 ),
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: mediumGap),
             // Filter chips
             SizedBox(
-              height: 40,
+              height: chipsize,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
                 child: Row(
                   children: [
                     _FilterChip(
@@ -78,25 +86,25 @@ class _VegetablesPageState extends State<VegetablesPage> {
                       isSelected: _selectedChip == 0,
                       onTap: () => setState(() => _selectedChip = 0),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: smallGap),
                     _FilterChip(
                       label: 'Cucumbers and tomato',
                       isSelected: _selectedChip == 1,
                       onTap: () => setState(() => _selectedChip = 1),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: smallGap),
                     _FilterChip(
                       label: 'Onions and garlic (8)',
                       isSelected: _selectedChip == 2,
                       onTap: () => setState(() => _selectedChip = 2),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: smallGap),
                     _FilterChip(
                       label: 'Peppers (7)',
                       isSelected: _selectedChip == 3,
                       onTap: () => setState(() => _selectedChip = 3),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: smallGap),
                     _FilterChip(
                       label: 'Potatoes and ca',
                       isSelected: _selectedChip == 4,
@@ -106,14 +114,14 @@ class _VegetablesPageState extends State<VegetablesPage> {
                 ),
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: mediumGap),
             // Product list
             Expanded(
               child: ListView(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
                 children: [
                   _ProductCard(
-                    imageUrl: 'https://picsum.photos/400/400?random=1',
+                    imageUrl: 'https://images.unsplash.com/photo-1580792442222-081d7796d896?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                     name: 'Boston Lettuce',
                     price: '1.10 € / piece',
                     onTap: () {
@@ -132,19 +140,25 @@ class _VegetablesPageState extends State<VegetablesPage> {
 
                     },
                   ),
-                  SizedBox(height: 12),
+                  SizedBox(height: mediumGap),
                   _ProductCard(
-                    imageUrl: 'https://picsum.photos/400/400?random=2',
+                    imageUrl: 'https://plus.unsplash.com/premium_photo-1675365837002-1c4cd601e74f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                     name: 'Purple Cauliflower',
                     price: '1.85 € / kg',
                   ),
-                  SizedBox(height: 12),
+                  SizedBox(height: mediumGap),
                   _ProductCard(
-                    imageUrl: 'https://picsum.photos/400/400?random=3',
+                    imageUrl: 'https://images.unsplash.com/photo-1551947392-a8c57f288381?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                     name: 'Savoy Cabbage',
                     price: '1.45 € / kg',
                   ),
-                ],
+                     SizedBox(height: mediumGap),
+                                    _ProductCard(
+                    imageUrl: 'https://images.unsplash.com/photo-1655558132738-8a4f5124186f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    name: 'Carrots',
+                    price: '1.45 € / kg',
+                  ),
+                ],r
               ),
             ),
           ],
@@ -195,33 +209,30 @@ class _FilterChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(20),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          color: isSelected ? const Color(0xFF6B46C1) : const Color(0xFFF3F4F6),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (isSelected) ...[
-              const Icon(Icons.check, color: Colors.white, size: 16),
-              const SizedBox(width: 4),
-            ],
-            Text(
-              label,
-              style: TextStyle(
-                color: isSelected ? Colors.white : const Color(0xFF6B7280),
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ],
+    final Size screenSize = MediaQuery.of(context).size;
+    final double smallGap = screenSize.width * 0.02; // ~8px on 400px width
+    final double mediumGap = screenSize.width * 0.03; // ~12px on 400px width
+    final double xSmallGap = screenSize.width * 0.05; // ~4px on 400px width
+    final List<String> parts = label.split(RegExp(r"\s+"));
+    final String initials = parts.take(2).map((w) => w.isNotEmpty ? w[0] : '').join().toUpperCase();
+    return ChoiceChip(
+   
+      label: Text(
+        label,
+        style: TextStyle(
+          color: isSelected ? const Color(0xFF6C0EE4) : const Color(0xFF6B7280),
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
         ),
       ),
+      selected: isSelected,
+      onSelected: (_) => onTap(),
+      backgroundColor: const Color(0xFFF3F4F6),
+      selectedColor: const Color(0xFFE2CBFF),
+      labelPadding: EdgeInsets.symmetric(horizontal: mediumGap, vertical: smallGap),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      pressElevation: 0,
     );
   }
 }
@@ -242,11 +253,18 @@ class _ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Responsive spacing for product card
+    final Size screenSize = MediaQuery.of(context).size;
+    final double smallGap = screenSize.width * 0.02; // ~8px on 400px width
+    final double mediumGap = screenSize.width * 0.03; // ~12px on 400px width
+    final double cardPadding = screenSize.width * 0.03; 
+    final double imageWidth = screenSize.width * 0.5; 
+    final double imageHeight = screenSize.width * 0.3;// ~12px on 400px width
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(12),
       child: Container(
-        padding: const EdgeInsets.all(12),
+        padding: EdgeInsets.all(cardPadding),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(12),
@@ -264,20 +282,20 @@ class _ProductCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             child: Image.network(
               imageUrl,
-              width: 80,
-              height: 80,
+              width: imageWidth,
+              height: imageHeight,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
                 return Container(
-                  width: 80,
-                  height: 80,
+                  width: imageWidth,
+                  height: imageWidth,
                   color: Colors.grey[300],
                   child: const Icon(Icons.image, color: Colors.grey),
                 );
               },
             ),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: mediumGap),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -290,7 +308,7 @@ class _ProductCard extends StatelessWidget {
                     color: Color(0xFF331B6D),
                   ),
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: smallGap),
                 Text(
                   price,
                   style: const TextStyle(
@@ -299,7 +317,7 @@ class _ProductCard extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: smallGap),
                 Row(
                   children: [
                     Container(
@@ -316,7 +334,7 @@ class _ProductCard extends StatelessWidget {
                         size: 16,
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: smallGap),
                     Container(
                       width: 32,
                       height: 32,
