@@ -11,6 +11,9 @@ A simple, responsive Flutter UI for a grocery shopping experience. The current f
 
 ## Screens
 - `VegetablesPage`: Header, search input, category chips, and a list of vegetables with images, price labels, and quick action icons
+<img width="302" height="593" alt="grocery_app" src="https://github.com/user-attachments/assets/b4a21a82-a57a-4294-8772-a45a4a261558" />
+
+  
 
 ## Tech Stack
 - Flutter (Dart)
